@@ -1,0 +1,48 @@
+<!--
+<ul class="items">
+  <li *ngFor="let stock of stocks">
+  <span class="badge">{{stock.stackId}}</span> {{stock.name}} {{stock.cost}}
+  </li>
+</ul>
+
+-->
+<form class="navbar-form navbar-left" action="/action_page.php">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Search" name="search" search="ngModel" (keypress)="searchStock($event)" [(ngModel)]="search" >
+    <div class="input-group-btn">
+      <button class="btn btn-default" type="submit">
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="container">
+  <h2>Stock-List works!</h2>
+  <p>Contextual classes can be used to color table rows or table cells. The classes that can be used are: .active, .success, .info, .warning, and .danger.</p>
+  <a align="right" class="btn btn-default" routerLink="/new-stock" >Add New Stock</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Stock Id</th>
+        <th>Stock Name</th>
+        <th>Cost</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let stock of stocks">
+        <td>{{stock.stackId}}</td>
+        <td>{{stock.name}}</td>
+        <td>{{stock.cost}}</td>
+        <td><button [routerLink]="['/new-stock', stock.stackId]" class="btn btn-info btn-sm">
+            <span class="glyphicon glyphicon-edit"></span> Edit
+          </button> &nbsp;&nbsp;|&nbsp;&nbsp;
+          <a (click)="deleteStock(stock.stackId)" class="btn btn-info btn-sm">
+              <span class="glyphicon glyphicon-remove"></span> Delete
+            </a></td>
+      </tr>      
+    </tbody>
+  </table>
+</div>
+
